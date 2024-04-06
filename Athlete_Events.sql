@@ -30,13 +30,10 @@ copy athlete_events FROM 'C:\Users\Benedicta Martins\OneDrive\Documents\LANRE\BU
 copy noc_regions FROM 'C:\Users\Benedicta Martins\OneDrive\Documents\LANRE\BUSINESS TRAINING\My Portfolio\archive (4)\noc_regions.csv' DELIMITER ',' CSV HEADER;
 
 
-
-
 -- Total olympics games that have been held
 select 
 	count(distinct games) 
 from athlete_events
-
 
 
 -- List of all Olympics games held so far.
@@ -44,8 +41,7 @@ select
 	count(distinct games) as Total_no_of_games 
 from athlete_events
 
-
-
+  
 -- Total no of nations who participated in each olympics game
 select 
 	games, 
@@ -55,7 +51,6 @@ join noc_regions n
 		on a.noc = n.noc
 group by 1
 order by 2 desc
-
 
 
 -- Year with the highest and lowest no of countries participating in olympics
@@ -77,8 +72,6 @@ with all_countries as
       , first_value(total_countries) over(order by total_countries desc)) as Highest_Countries
       from tot_countries
       order by 1;
-
-
 
 
 -- Nation that has participated in all of the olympic games
@@ -107,8 +100,6 @@ from countries_participated c
       order by 1;
 
 
-
-
 -- The sport which was played in all summer olympics.
 with t1 as (
 	 	select 
@@ -133,7 +124,6 @@ from t3
 		on t1.total_games = t3.no_of_games;
 
 
-		
 -- Sports played only once in the olympics
 with t1 as
           	(select 
@@ -154,7 +144,6 @@ where t2.no_of_games = 1
 order by t1.sport;
 
 
-
 -- Total no of sports played in each olympic games.
 select 
 	games,
@@ -169,7 +158,6 @@ from athlete_events
 where medal = 'Gold' and age <> 'NA'
 order by age desc
 limit 2
-
 
 
 -- Ratio of male and female athletes participated in all olympic games.
@@ -191,8 +179,7 @@ select
 	concat ('1 :', round(male_count::decimal / female_count, 2)) as ratio
 from cte
 
-
-
+  
 -- Top 5 athletes who have won the most gold medals.
 with cte as (
 			select 
@@ -215,8 +202,6 @@ select name,
 		Gold_medal_num
 from cte 
 where rnk <= 5
-
-
 
 
 -- Top 5 athletes who have won the most medals (gold/silver/bronze).
@@ -244,8 +229,6 @@ from cte
 where rnk <= 5
 
 
-
-
 -- Top 5 most successful countries in olympics. Success is defined by no of medals won.
 with cte as (
 			select 
@@ -269,8 +252,7 @@ select
 from cte 
 where rnk <= 5
 
-
-
+  
 -- Total gold, silver and bronze medals won by each country.
 with Gold as (
 			select 
@@ -425,7 +407,6 @@ from temp
 order by 1
 
 
-
 -- Countries that won the most gold, most silver, most bronze medals and the most medals in each olympic games.
 with temp as (
 		select 
@@ -488,7 +469,7 @@ join temp2 t2
 	on t1.games = t2.games
 order by 1
 
-
+  
 -- Countries that have never won gold medal but have won silver/bronze medals
 select * from (
     	select
