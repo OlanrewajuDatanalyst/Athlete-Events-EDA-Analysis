@@ -168,6 +168,12 @@ select
 	concat ('1 :', round(male_count::decimal / female_count, 2)) as ratio
 from cte
 ```
+### Output:
+The ratio of women to men in the olympic game is;
+Ratio |
+-- | 
+1 : 2.64 | 
+
 
 
 -- Top 5 athletes who have won the most gold medals.
@@ -195,6 +201,19 @@ select
 from cte 
 where rnk <= 5
 ```
+### Output:
+name | region | gold_medal_num
+-- | -- | --
+Michael Fred Phelps, II | USA | 23
+Raymond Clarence "Ray" Ewry | USA | 10
+Larysa Semenivna Latynina (Diriy-) | Russia | 9
+Mark Andrew Spitz | USA | 9
+Frederick Carlton "Carl" Lewis | USA | 9
+Paavo Johannes Nurmi | Finland | 9
+Usain St. Leo Bolt | Jamaica | 8
+Jennifer Elisabeth "Jenny" Thompson (-Cumpelik) | USA | 8
+Birgit Fischer-Schmidt | Germany | 8
+Sawao Kato | Japan | 8
 
 
 
@@ -224,6 +243,19 @@ select
 from cte 
 where rnk <= 5
 ```
+### Output:
+name | region | total_medals
+-- | -- | -- 
+Michael Fred Phelps, II | USA | 28
+Larysa Semenivna Latynina (Diriy-) | Russia | 18
+Nikolay Yefimovich Andrianov | Russia | 15
+Ole Einar Bjrndalen | Norway | 13
+Takashi Ono | Japan | 13
+Edoardo Mangiarotti | Italy | 13
+Borys Anfiyanovych Shakhlin | Russia | 13
+Birgit Fischer-Schmidt | Germany | 12
+Dara Grace Torres (-Hoffman, -Minas) | USA | 12
+Paavo Johannes Nurmi | Finland | 12
 
 
 
@@ -251,6 +283,14 @@ select
 from cte 
 where rnk <= 5
 ```
+### Output:
+region | total_medals
+-- | -- 
+USA | 5637
+Russia | 3947
+Germany | 3756
+UK | 2068
+France | 1777
 
 
 -- Total gold, silver and bronze medals won by each country.
@@ -277,6 +317,7 @@ from crosstab(
 as result (country varchar, bronze bigint, gold bigint, silver bigint)
 order by 2 desc, 3 desc, 4 desc
 ```
+### Output:
 country | gold | silver | bronze
 -- | -- | -- | -- 
 USA | 2638 | 1641 | 1358
