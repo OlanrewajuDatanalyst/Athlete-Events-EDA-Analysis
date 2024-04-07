@@ -325,6 +325,20 @@ left join Bronze b
 			on s.region = b.region
 order by 1, 2
 ```
+### Output:
+games | region | gold_medals | silver_medals | bronze_medals
+-- | -- | -- | -- | --
+1896 Summer | Australia | 2 | 459 | 522
+1896 Summer | Austria | 2 | 186 | 156
+1896 Summer | Denmark | 1 | 241 | 177
+1896 Summer | France | 5 | 610 | 666
+1896 Summer | Germany | 25 | 1195 | 1260
+1896 Summer | Greece | 10 | 109 | 84
+1896 Summer | Hungary | 2 | 332 | 371
+1896 Summer | Switzerland | 1 | 248 | 268
+1896 Summer | UK | 3 | 739 | 651
+1896 Summer | USA | 11 | 1641 | 1358
+
 
 
 -- Country that won the most gold, most silver and most bronze medals in each olympic games.
