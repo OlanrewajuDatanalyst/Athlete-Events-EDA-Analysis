@@ -14,7 +14,7 @@ from athlete_events
 ```
 
 
--- Total no of nations who participated in each olympics game
+Total no of nations who participated in each olympics game
 ```sql
 select 
 	games, 
