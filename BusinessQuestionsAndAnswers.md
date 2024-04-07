@@ -126,6 +126,19 @@ join t1
 where t2.no_of_games = 1
 order by t1.sport;
 ```
+### Output:
+sport | no_of_games | games
+-- | -- | -- |
+Aeronautics | 1 | 1936 Summer
+Basque Pelota | 1 | 1900 Summer
+Cricket | 1 | 1900 Summer
+Croquet | 1 | 1900 Summer
+Jeu De Paume | 1 | 1908 Summer
+Military Ski Patrol | 1 | 1924 Winter
+Motorboating | 1 | 1908 Summer
+Racquets | 1 | 1908 Summer
+Roque | 1 | 1904 Summer
+Rugby Sevens | 1 | 2016 Summer
 
 
 -- Total no of sports played in each olympic games.
@@ -136,6 +149,21 @@ select
 from athlete_events
 group by 1
 ```
+### Output:
+games | total_sports
+-- | -- 
+1896 Summer | 9
+1900 Summer | 20
+1904 Summer | 18
+1906 Summer | 13
+1908 Summer | 24
+1912 Summer | 17
+1920 Summer | 25
+1924 Summer | 20
+1924 Winter | 10
+1928 Summer | 17
+1928 Winter | 8
+
 
 -- Oldest athletes to win a gold medal.
 ```sql
