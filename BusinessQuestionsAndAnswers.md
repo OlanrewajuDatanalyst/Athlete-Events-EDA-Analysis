@@ -54,28 +54,28 @@ with all_countries as
 -- Nation that has participated in all of the olympic games
 ```sql
 with tot_games as (
-					select 
-						count(distinct games) as total_games
-              		from athlete_events),
+		select 
+			ount(distinct games) as total_games
+              	from athlete_events),
      countries as (
-		 			select 
-		 				games, 
-		 				region as country
-              		from athlete_events a
-              		join noc_regions n 
-			  			on n.noc = a.noc
-              		group by 1, 2),
+		 select 
+		 	games, 
+		 	region as country
+              	from athlete_events a
+              	join noc_regions n 
+			on n.noc = a.noc
+              	group by 1, 2),
      countries_participated as (
-		 			select 
-		 				country, 
-		 				count(1) as total_participated_games
-              		from countries
-              		group by 1)
+		 select 
+		 	country, 
+		 	count(1) as total_participated_games
+              	from countries
+              	group by 1)
 select c.*
 from countries_participated c
       join tot_games t 
-	  		on t.total_games = c.total_participated_games
-      order by 1;
+	  on t.total_games = c.total_participated_games
+order by 1;
 ```
 
 
