@@ -21,7 +21,7 @@ join noc_regions n
 group by 1
 order by 2 desc
 ```
-
+### Output:
 games | total_nations
 -- | -- 
 2016 Summer | 204
@@ -47,7 +47,7 @@ with all_countries as
               (select games, count(1) as total_countries
               from all_countries
               group by games)
-      select distinct
+select distinct
       concat(first_value(games) over(order by total_countries)
       , ' - '
       , first_value(total_countries) over(order by total_countries)) as Lowest_Countries,
@@ -55,9 +55,9 @@ with all_countries as
       , ' - '
       , first_value(total_countries) over(order by total_countries desc)) as Highest_Countries
       from tot_countries
-      order by 1;
+order by 1;
 ```
-
+### Output:
 lowest_countries | highest_countries
 -- | -- 
 1896 Summer - 12 | 2016 Summer - 204
@@ -90,6 +90,13 @@ from countries_participated c
 	  on t.total_games = c.total_participated_games
 order by 1;
 ```
+### Output:
+country | total_participated_games
+-- | --
+France | 51
+Italy | 51
+Switzerland | 51
+UK | 51
 
 
 
@@ -117,6 +124,14 @@ from t3
 join t1 
 	on t1.total_games = t3.no_of_games;
 ```
+
+sport | no_of_games | total_games
+-- | -- |-- |
+Swimming | 29 | 29
+Cycling | 29 | 29
+Fencing | 29 | 29
+Gymnastics | 29 | 29
+Athletics | 29 | 29
 
 		
 -- Sports played only once in the olympics
