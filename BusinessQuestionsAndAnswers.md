@@ -437,9 +437,9 @@ join temp2 t2
 	on t1.games = t2.games
 order by 1
 ```
-
-games | gold	| silver	| bronze	| total_medals
--- | -- | -- | --
+### Output:
+games | gold | silver | bronze | total_medals
+-- | -- | -- | -- | --
 1896 Summer	| Germany - 25	| Greece - 18	| Greece - 20	| Greece - 62
 1900 Summer	| UK - 59	| France - 101	| France - 82	France - 228
 1904 Summer	| USA - 128	| USA - 141	| USA - 125	| USA - 173
