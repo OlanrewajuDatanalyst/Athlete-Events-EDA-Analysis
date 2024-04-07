@@ -1,3 +1,16 @@
+
+```sql
+SELECT 
+  FORMAT_DATE("%Y-%m", created_at) AS month_year,
+  ROUND((COUNT(DISTINCT order_id)/COUNT(DISTINCT user_id)),2) AS frequencies,
+  ROUND((SUM(sale_price)/COUNT(DISTINCT order_id)),2) AS Average_order_value,
+  COUNT(DISTINCT user_id) AS total_unique_users
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+WHERE status = 'Complete'
+GROUP BY month_year
+ORDER BY month_year DESC;
+```
+
 ## Output:
 
 And here are the results for the firs 10 rows:
