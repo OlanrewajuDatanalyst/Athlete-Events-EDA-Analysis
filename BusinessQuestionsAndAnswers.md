@@ -125,6 +125,7 @@ join t1
 	on t1.total_games = t3.no_of_games;
 ```
 
+### Output:
 sport | no_of_games | total_games
 -- | -- |-- |
 Swimming | 29 | 29
@@ -203,6 +204,7 @@ order by age desc
 limit 2
 ```
 
+### Output:
 id | name | sex | age | height | weight | team | noc | games | year | season | city | sport | event | medal
 -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | 
 53238 | Charles Jacobus | M | 64 | NA	NA | United States | USA | 1904 Summer | 1904 | Summer | St. Louis | Roque | Roque Men's Singles | Gold
