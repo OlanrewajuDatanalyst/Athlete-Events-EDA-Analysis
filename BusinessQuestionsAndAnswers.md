@@ -479,6 +479,6 @@ Moldova | 0 | 3 | 5
 Lebanon | 0 | 2 | 2
 Sri Lanka | 0 | 2 | 0
 Tanzania | 0 | 2 | 0
-Ghana | 0 | 1	22
+Ghana | 0 | 1 | 22
 Saudi Arabia | 0 | 1 | 5
 
