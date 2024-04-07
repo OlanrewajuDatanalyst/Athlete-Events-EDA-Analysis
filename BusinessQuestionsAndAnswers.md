@@ -147,6 +147,12 @@ order by age desc
 limit 2
 ```
 
+id | name | sex | age | height | weight | team | noc | games | year | season | city | sport | event | medal
+-- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | 
+53238 | Charles Jacobus | M | 64 | NA	NA | United States | USA | 1904 Summer | 1904 | Summer | St. Louis | Roque | Roque Men's Singles | Gold
+117046 | Oscar Gomer Swahn | M | 64 | NA | NA | Sweden | SWE | 1912 Summer | 1912 | Summer | Stockholm | Shooting | Shooting Men's Running Target, Single Shot, Team | Gold
+
+
 
 -- Ratio of male and female athletes participated in all olympic games.
 ```sql
