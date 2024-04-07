@@ -441,7 +441,7 @@ order by 1
 games | gold | silver | bronze | total_medals
 -- | -- | -- | -- | --
 1896 Summer	| Germany - 25	| Greece - 18	| Greece - 20	| Greece - 62
-1900 Summer	| UK - 59	| France - 101	| France - 82	France - 228
+1900 Summer	| UK - 59	| France - 101	| France - 82	| France - 228
 1904 Summer	| USA - 128	| USA - 141	| USA - 125	| USA - 173
 1906 Summer	| Greece - 24	| Greece - 48	| Greece - 30	| Greece - 157
 1908 Summer	| UK - 147	| UK - 131	| UK - 90	| UK - 294
