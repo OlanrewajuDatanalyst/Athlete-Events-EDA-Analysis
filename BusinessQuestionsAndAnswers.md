@@ -443,24 +443,24 @@ order by 1
 ```sql
 select * from (
     	select
-			country, 
-			coalesce(gold, 0) as gold,
-			coalesce(silver, 0) as silver,
-			coalesce(bronze, 0) as bronze
-    		from crosstab(
-				'select
-					n.region as country,
-					medal, 
-					count(1) as total_medals
-				from athlete_events a
-				join noc_regions n
-					on a.noc = n.noc
-				where medal <> ''NA''
-				group by 1, 2
-				order by 1, 2',
-				'values (''Bronze''), (''Gold''), (''Silver'')') 
-    		as result 
-			(country varchar, bronze bigint, gold bigint, silver bigint)) x
+		country, 
+		coalesce(gold, 0) as gold,
+		coalesce(silver, 0) as silver,
+		coalesce(bronze, 0) as bronze
+    	from crosstab(
+			'select
+				n.region as country,
+				medal, 
+				count(1) as total_medals
+			from athlete_events a
+			join noc_regions n
+				on a.noc = n.noc
+			where medal <> ''NA''
+			group by 1, 2
+			order by 1, 2',
+			'values (''Bronze''), (''Gold''), (''Silver'')') 
+    	as result 
+		(country varchar, bronze bigint, gold bigint, silver bigint)) x
 where gold = 0 and (silver > 0 or bronze > 0)
 order by gold desc nulls last, silver desc nulls last, bronze desc nulls last;
 ```
