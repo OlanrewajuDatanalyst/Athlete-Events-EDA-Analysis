@@ -371,7 +371,19 @@ select
 from temp
 order by 1
 ```
-
+### Output:
+games | gold | silver | bronze 
+-- | -- | -- | -- 
+1896 Summer	| Germany - 25	| Greece - 18	| Greece - 20	
+1900 Summer	| UK - 59	| France - 101	| France - 82	
+1904 Summer	| USA - 128	| USA - 141	| USA - 125	
+1906 Summer	| Greece - 24	| Greece - 48	| Greece - 30	
+1908 Summer	| UK - 147	| UK - 131	| UK - 90	
+1912 Summer	| Sweden - 103	| UK - 64	| UK - 59	
+1920 Summer	| USA - 111	| France - 71	| Belgium - 66	
+1924 Summer	| USA - 97	| France - 51	| USA - 49	
+1924 Winter	| UK - 16	| USA - 10	| UK - 11	
+1928 Summer	| USA - 47	| Netherlands - 29	| Germany - 41	
 
 -- Countries that won the most gold, most silver, most bronze medals and the most medals in each olympic games.
 ```sql
