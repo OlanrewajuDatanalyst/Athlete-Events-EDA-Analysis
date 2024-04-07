@@ -27,7 +27,7 @@ order by 2 desc
 ```
 
 
--- Year with the highest and lowest no of countries participating in olympics
+-- Year with the highest and lowest no of countries participating in olympics[
 ```sql
 with all_countries as
               (select games, region
@@ -83,42 +83,42 @@ order by 1;
 -- The sport which was played in all summer olympics.
 ```sql
 with t1 as (
-	 	select 
-			 count(distinct games) as total_games
+	select 
+		count(distinct games) as total_games
         from athlete_events
-	 	where season = 'Summer'),
-      t2 as (
-		 select 
-		 	distinct games, 
-		  	sport
+	where season = 'Summer'),
+    t2 as (
+	select 
+		distinct games, 
+		sport
          from athlete_events 
-		 where season = 'Summer'),
+	 where season = 'Summer'),
       t3 as (
-		  select 
-			 sport, 
-		  	 count(1) as no_of_games
-          	from t2
-          	group by 1)
+	select 
+		sport, 
+		count(1) as no_of_games
+        from t2
+        group by 1)
 select *
 from t3
-    join t1 
-		on t1.total_games = t3.no_of_games;
+join t1 
+	on t1.total_games = t3.no_of_games;
 ```
 
 		
 -- Sports played only once in the olympics
 ```sql
-with t1 as
-          	(select 
-			 	distinct games, 
-			 	sport
-          	from athlete_events),
-     t2 as
-          	(select 
-				sport, 
-			 	count(1) as no_of_games
-          	from t1
-          	group by sport)
+with t1 as (
+	select 
+		distinct games, 
+		sport
+        from athlete_events),
+     t2 as (
+	select 
+		sport, 
+		count(1) as no_of_games
+        from t1
+	group by sport)
 select t2.*, t1.games
 from t2
 join t1 
@@ -132,11 +132,13 @@ order by t1.sport;
 ```sql
 select 
 	games,
-	 count(distinct(sport)) as Total_sports
+	count(distinct(sport)) as Total_sports
 from athlete_events
 group by 1
+```
 
 -- Oldest athletes to win a gold medal.
+```sql
 select 
 	*
 from athlete_events
@@ -171,24 +173,25 @@ from cte
 -- Top 5 athletes who have won the most gold medals.
 ```sql
 with cte as (
-			select 
-				*,
-				dense_rank() over(order by Gold_medal_num desc) as rnk
-			from (
-				select 
-					name,
-					region,
-					count (medal) as Gold_medal_num	
-				from athlete_events a
-				join noc_regions n
-					on a.noc = n.noc
-				where medal = 'Gold'
-				group by 1, 2
-	              )
-			)
-select name,
-		region,
-		Gold_medal_num
+	select 
+		*,
+		dense_rank() over(order by Gold_medal_num desc) as rnk
+	from (
+		select 
+			name,
+			region,
+			count (medal) as Gold_medal_num	
+		from athlete_events a
+		join noc_regions n
+			on a.noc = n.noc
+		where medal = 'Gold'
+		group by 1, 2
+	       )
+	)
+select
+	name,
+	region,
+	Gold_medal_num
 from cte 
 where rnk <= 5
 ```
@@ -198,25 +201,26 @@ where rnk <= 5
 -- Top 5 athletes who have won the most medals (gold/silver/bronze).
 ```sql
 with cte as (
-			select 
-				*,
-				dense_rank() over(order by  total_medals desc) as rnk
-			from (
-				select 
-					name,
-					region,
-					count (medal) as total_medals	
-				from athlete_events a
-				join noc_regions n
-					on a.noc = n.noc
-				where medal in ('Gold', 'Silver', 'Bronze')
-				group by 1, 2
-				order by 3
-	              )
-			)
-select name,
-		region,
-		 total_medals
+	select 
+		*,
+		dense_rank() over(order by  total_medals desc) as rnk
+	from (
+		select 
+			name,
+			region,
+			count (medal) as total_medals	
+		from athlete_events a
+		join noc_regions n
+			on a.noc = n.noc
+		where medal in ('Gold', 'Silver', 'Bronze')
+		group by 1, 2
+		order by 3
+		)
+		)
+select
+	name,
+	region,
+	total_medals
 from cte 
 where rnk <= 5
 ```
@@ -226,21 +230,21 @@ where rnk <= 5
 -- Top 5 most successful countries in olympics. Success is defined by no of medals won.
 ```sql
 with cte as (
-			select 
-				*,
-				dense_rank() over(order by  total_medals desc) as rnk
-			from (
-				select 
-					region,
-					count (medal) as total_medals	
-				from athlete_events a
-				join noc_regions n
-					on a.noc = n.noc
-				where medal in ('Gold', 'Silver', 'Bronze')
-				group by 1
-				order by 2
-	              )
-			)
+	select 
+		*,
+		dense_rank() over(order by  total_medals desc) as rnk
+	from (
+		select 
+			region,
+			count (medal) as total_medals	
+		from athlete_events a
+		join noc_regions n
+			on a.noc = n.noc
+		where medal in ('Gold', 'Silver', 'Bronze')
+		group by 1
+		order by 2
+	     )
+	)
 select
 	region,
 	total_medals
@@ -257,19 +261,20 @@ select
 	coalesce(gold, 0) as gold,
 	coalesce(silver, 0) as silver,
 	coalesce(bronze, 0) as bronze
-from crosstab('select
-					n.region as country,
-					medal, 
-					count(1) as total_medals
-				from athlete_events a
-				join noc_regions n
-					 on a.noc = n.noc
-				where medal <> ''NA''
-				group by 1, 2
-				order by 1, 2',
-	            'values (''Bronze''), (''Gold''), (''Silver'')')
+from crosstab(
+		'select
+			n.region as country,
+			medal, 
+			count(1) as total_medals
+		from athlete_events a
+		join noc_regions n
+			on a.noc = n.noc
+		where medal <> ''NA''
+		group by 1, 2
+		order by 1, 2',
+	        'values (''Bronze''), (''Gold''), (''Silver'')')
                 -- Pass our real query as a string 
-		as result (country varchar, bronze bigint, gold bigint, silver bigint)
+as result (country varchar, bronze bigint, gold bigint, silver bigint)
 order by 2 desc, 3 desc, 4 desc
 ```
 
@@ -331,37 +336,38 @@ with temp as (
 			coalesce(gold, 0) as gold,
 			coalesce(silver, 0) as silver,
 			coalesce(bronze, 0) as bronze
-		from crosstab('select
-							concat(games, '' - '', n.region) as games_country,
-							medal, 
-							count(1) as total_medals
-						from athlete_events a
-						join noc_regions n
-							 on a.noc = n.noc
-						where medal <> ''NA''
-						group by 1, 2
-						order by 1, 2',
-						'values (''Bronze''), (''Gold''), (''Silver'')')
-				as result (games_country varchar, bronze bigint, gold bigint, silver bigint)
+		from crosstab(
+				'select
+					concat(games, '' - '', n.region) as games_country,
+					medal, 
+					count(1) as total_medals
+				from athlete_events a
+				join noc_regions n
+					on a.noc = n.noc
+				where medal <> ''NA''
+				group by 1, 2
+				order by 1, 2',
+				'values (''Bronze''), (''Gold''), (''Silver'')')
+		as result (games_country varchar, bronze bigint, gold bigint, silver bigint)
 		order by 1 
 )
 select 
 	distinct games,
 	concat(
-			first_value(country) over(partition by games order by gold desc),
-			' - ' ,
-			first_value(gold) over(partition by games order by gold desc)
-		  ) as Gold,
+		first_value(country) over(partition by games order by gold desc),
+		' - ' ,
+		first_value(gold) over(partition by games order by gold desc)
+		) as Gold,
 	concat(
-			first_value(country) over(partition by games order by Silver desc),
-			' - ' ,
-			first_value(Silver) over(partition by games order by Silver desc)
-		  ) as Silver,
-concat(
-			first_value(country) over(partition by games order by Bronze desc),
-			' - ' ,
-			first_value(bronze) over(partition by games order by Bronze desc)
-		  ) as Bronze
+		first_value(country) over(partition by games order by Silver desc),
+		' - ' ,
+		first_value(Silver) over(partition by games order by Silver desc)
+		) as Silver,
+	concat(
+		first_value(country) over(partition by games order by Bronze desc),
+		' - ' ,
+		first_value(bronze) over(partition by games order by Bronze desc)
+		) as Bronze
 from temp
 order by 1
 ```
@@ -376,19 +382,20 @@ with temp as (
 			coalesce(gold, 0) as gold,
 			coalesce(silver, 0) as silver,
 			coalesce(bronze, 0) as bronze
-		from crosstab('select
-							concat(games, '' - '', n.region) as games_country,
-							medal, 
-							count(1) as total_medals
-						from athlete_events a
-						join noc_regions n
-							 on a.noc = n.noc
-						where medal <> ''NA''
-						group by 1, 2
-						order by 1, 2',
-						'values (''Bronze''), (''Gold''), (''Silver'')')
+		from crosstab(
+				'select
+					concat(games, '' - '', n.region) as games_country,
+					medal, 
+					count(1) as total_medals
+				from athlete_events a
+				join noc_regions n
+						on a.noc = n.noc
+				where medal <> ''NA''
+				group by 1, 2
+				order by 1, 2',
+				'values (''Bronze''), (''Gold''), (''Silver'')')
 						-- Pass our real query as a string 
-				as result (games_country varchar, bronze bigint, gold bigint, silver bigint)
+		as result (games_country varchar, bronze bigint, gold bigint, silver bigint)
 		order by 1 
 ),
 	temp2 as (
@@ -406,25 +413,25 @@ with temp as (
 select 
 	distinct t1.games,
 	concat(
-			first_value(country) over(partition by t1.games order by gold desc),
-			' - ' ,
-			first_value(gold) over(partition by t1.games order by gold desc)
-		  ) as Gold,
+		first_value(country) over(partition by t1.games order by gold desc),
+		' - ' ,
+		first_value(gold) over(partition by t1.games order by gold desc)
+		) as Gold,
 	concat(
-			first_value(country) over(partition by t1.games order by Silver desc),
-			' - ' ,
-			first_value(Silver) over(partition by t1.games order by Silver desc)
-		  ) as Silver,
-concat(
-			first_value(country) over(partition by t1.games order by Bronze desc),
-			' - ' ,
-			first_value(bronze) over(partition by t1.games order by Bronze desc)
-		  ) as Bronze,
-concat(
-			first_value(country) over(partition by t2.games order by Bronze desc),
-			' - ' ,
-			first_value(total_medals) over(partition by t2.games order by total_medals desc)
-		  ) as total_medals
+		first_value(country) over(partition by t1.games order by Silver desc),
+		' - ' ,
+		first_value(Silver) over(partition by t1.games order by Silver desc)
+		) as Silver,
+	concat(
+		first_value(country) over(partition by t1.games order by Bronze desc),
+		' - ' ,
+		first_value(bronze) over(partition by t1.games order by Bronze desc)
+		) as Bronze,
+	concat(
+		first_value(country) over(partition by t2.games order by Bronze desc),
+		' - ' ,
+		first_value(total_medals) over(partition by t2.games order by total_medals desc)
+		) as total_medals
 from temp t1
 join temp2 t2
 	on t1.games = t2.games
@@ -440,19 +447,20 @@ select * from (
 			coalesce(gold, 0) as gold,
 			coalesce(silver, 0) as silver,
 			coalesce(bronze, 0) as bronze
-    		from crosstab('select
-								n.region as country,
-								medal, 
-								count(1) as total_medals
-							from athlete_events a
-							join noc_regions n
-								 on a.noc = n.noc
-							where medal <> ''NA''
-							group by 1, 2
-							order by 1, 2',
-							'values (''Bronze''), (''Gold''), (''Silver'')') 
+    		from crosstab(
+				'select
+					n.region as country,
+					medal, 
+					count(1) as total_medals
+				from athlete_events a
+				join noc_regions n
+					on a.noc = n.noc
+				where medal <> ''NA''
+				group by 1, 2
+				order by 1, 2',
+				'values (''Bronze''), (''Gold''), (''Silver'')') 
     		as result 
-					(country varchar, bronze bigint, gold bigint, silver bigint)) x
-    where gold = 0 and (silver > 0 or bronze > 0)
-    order by gold desc nulls last, silver desc nulls last, bronze desc nulls last;
+			(country varchar, bronze bigint, gold bigint, silver bigint)) x
+where gold = 0 and (silver > 0 or bronze > 0)
+order by gold desc nulls last, silver desc nulls last, bronze desc nulls last;
 ```
