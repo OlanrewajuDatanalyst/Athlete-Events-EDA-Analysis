@@ -464,3 +464,21 @@ select * from (
 where gold = 0 and (silver > 0 or bronze > 0)
 order by gold desc nulls last, silver desc nulls last, bronze desc nulls last;
 ```
+
+
+### Output:
+country	| gold | silver | bronze
+-- | -- | -- | --
+Paraguay | 0 | 17 | 0
+Iceland | 0 | 15 | 2
+Montenegro | 0 | 14 | 0
+Malaysia | 0 | 11 | 5
+Namibia | 0 | 4 | 0
+Philippines | 0 | 3 | 7
+Moldova | 0 | 3 | 5
+Lebanon | 0 | 2 | 2
+Sri Lanka | 0 | 2 | 0
+Tanzania | 0 | 2 | 0
+Ghana | 0 | 1	22
+Saudi Arabia | 0 | 1 | 5
+
