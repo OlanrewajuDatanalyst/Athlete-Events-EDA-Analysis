@@ -1,17 +1,13 @@
 Total olympics games that have been held
 ```sql
 select 
-	count(distinct games) 
+	count(distinct games) as Total_games
 from athlete_events
 ```
-
-
--- List of all Olympics games held so far.
-```sql
-select 
-	count(distinct games) as Total_no_of_games 
-from athlete_events
-```
+### Output:
+Total_games |
+-- | 
+51 | 
 
 
 Total no of nations who participated in each olympics game
@@ -25,6 +21,19 @@ join noc_regions n
 group by 1
 order by 2 desc
 ```
+
+games | total_nations
+-- | -- 
+2016 Summer | 204
+2012 Summer | 203
+2008 Summer | 202
+2004 Summer | 199
+2000 Summer | 198
+1996 Summer | 195
+1992 Summer | 167
+1988 Summer | 155
+1984 Summer | 138
+1972 Summer | 119
 
 
 -- Year with the highest and lowest no of countries participating in olympics[
@@ -48,6 +57,10 @@ with all_countries as
       from tot_countries
       order by 1;
 ```
+
+lowest_countries | highest_countries
+-- | -- 
+1896 Summer - 12 | 2016 Summer - 204
 
 
 
