@@ -277,18 +277,18 @@ from crosstab(
 as result (country varchar, bronze bigint, gold bigint, silver bigint)
 order by 2 desc, 3 desc, 4 desc
 ```
-country	gold	silver	bronze
-USA	2638	1641	1358
-Russia	1599	1170	1178
-Germany	1301	1195	1260
-UK	678	739	651
-Italy	575	531	531
-France	501	610	666
-Sweden	479	522	535
-Canada	463	438	451
-Hungary	432	332	371
-Norway	378	361	294
-![image](https://github.com/OlanrewajuDatanalyst/Athlete-Events-EDA-Analysis/assets/165888320/95d74c30-8530-4feb-af3f-a0b7bb0765f4)
+country | gold | silver | bronze
+-- | -- | -- | -- 
+USA | 2638 | 1641 | 1358
+Russia | 1599 | 1170 | 1178
+Germany | 1301 | 1195 | 1260
+UK | 678 | 739 | 651
+Italy | 575 | 531 | 531
+France | 501 | 610 | 666
+Sweden | 479 | 522 | 535
+Canada | 463 | 438 | 451
+Hungary | 432 | 332 | 371
+Norway | 378 | 361 | 294
 
 
 -- Total gold, silver and broze medals won by each country corresponding to each olympic games.
