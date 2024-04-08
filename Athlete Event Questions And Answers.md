@@ -1,4 +1,26 @@
-Total olympics games that have been held
+## <p align="center"> Business Questions
+
+The purpose of this analysis is to understand and answer some business questions, gain insights and provide some recommendation to increase revenue.
+
+In this analysis, we will be focusing on orders that were not ***cancelled*** or ***returned*** since we will be dealing with metrics related to revenue.
+
+And this analysis was carried out as of September, 6th 2023.
+
+---
+
+
+### 1. How much are we selling monthly? Is it high or low compared to last month?
+
+### Steps:
+  
+* Use EXTRACT function to get the unique month numbers.
+
+* Get the revenue by multiplying the sale price with the number of items sold.
+
+* Use the DISTINCT function to get the unique orders placed and the user ids who made a purchase.
+
+
+### 1. How many olympics games have been held?
 ```sql
 select 
 	count(distinct games) as Total_games
@@ -10,7 +32,29 @@ Total_games |
 51 | 
 
 
-Total no of nations who participated in each olympics game
+### 2. List down all Olympics games held so far.
+```sql
+select 
+	distinct games as Games
+from athlete_events
+```
+### Output:
+games  |
+-- | 
+1896 Summer |
+1900 Summer |
+1904 Summer |
+1906 Summer |
+1908 Summer |
+1912 Summer |
+1920 Summer |
+1924 Summer |
+1924 Winter |
+1928 Summer |
+
+
+
+### 3. Mention the total no of nations who participated in each olympics game?
 ```sql
 select 
 	games, 
@@ -36,7 +80,7 @@ games | total_nations
 1972 Summer | 119
 
 
--- Year with the highest and lowest no of countries participating in olympics[
+### 4. Which year saw the highest and lowest no of countries participating in olympics?
 ```sql
 with all_countries as
               (select games, region
@@ -63,8 +107,7 @@ lowest_countries | highest_countries
 1896 Summer - 12 | 2016 Summer - 204
 
 
-
--- Nation that has participated in all of the olympic games
+### 5. Which nation has participated in all of the olympic games?
 ```sql
 with tot_games as (
 		select 
@@ -100,7 +143,7 @@ UK | 51
 
 
 
--- The sport which was played in all summer olympics.
+### 6. Identify the sport which was played in all summer olympics.
 ```sql
 with t1 as (
 	select 
@@ -135,7 +178,7 @@ Gymnastics | 29 | 29
 Athletics | 29 | 29
 
 		
--- Sports played only once in the olympics
+### 7. Which Sports were just played only once in the olympics?
 ```sql
 with t1 as (
 	select 
@@ -170,7 +213,7 @@ Roque | 1 | 1904 Summer
 Rugby Sevens | 1 | 2016 Summer
 
 
--- Total no of sports played in each olympic games.
+### 8. Fetch the total no of sports played in each olympic games.
 ```sql
 select 
 	games,
@@ -194,7 +237,7 @@ games | total_sports
 1928 Winter | 8
 
 
--- Oldest athletes to win a gold medal.
+### 9. Fetch details of the oldest athletes to win a gold medal.
 ```sql
 select 
 	*
@@ -212,7 +255,7 @@ id | name | sex | age | height | weight | team | noc | games | year | season | c
 
 
 
--- Ratio of male and female athletes participated in all olympic games.
+### 10. Find the Ratio of male and female athletes participated in all olympic games.
 ```sql
 with cte as (
 Select 
@@ -240,7 +283,7 @@ Ratio |
 
 
 
--- Top 5 athletes who have won the most gold medals.
+### 11. Fetch the top 5 athletes who have won the most gold medals.
 ```sql
 with cte as (
 	select 
@@ -281,7 +324,7 @@ Sawao Kato | Japan | 8
 
 
 
--- Top 5 athletes who have won the most medals (gold/silver/bronze).
+### 12. Fetch the top 5 athletes who have won the most medals (gold/silver/bronze).
 ```sql
 with cte as (
 	select 
@@ -323,7 +366,7 @@ Paavo Johannes Nurmi | Finland | 12
 
 
 
--- Top 5 most successful countries in olympics. Success is defined by no of medals won.
+### 13. Fetch the top 5 most successful countries in olympics. Success is defined by no of medals won.
 ```sql
 with cte as (
 	select 
@@ -357,7 +400,7 @@ UK | 2068
 France | 1777
 
 
--- Total gold, silver and bronze medals won by each country.
+### 14. List down total gold, silver and broze medals won by each country.
 ```sql
 --OR
 select 
@@ -396,7 +439,7 @@ Hungary | 432 | 332 | 371
 Norway | 378 | 361 | 294
 
 
--- Total gold, silver and broze medals won by each country corresponding to each olympic games.
+### 15. List down total gold, silver and broze medals won by each country corresponding to each olympic games.
 ```sql
 with Gold as (
 			select 
@@ -458,7 +501,7 @@ games | region | gold_medals | silver_medals | bronze_medals
 
 
 
--- Country that won the most gold, most silver and most bronze medals in each olympic games.
+### 16. Identify which country won the most gold, most silver and most bronze medals in each olympic games.
 ```sql
 with temp as (
 		select 
@@ -516,7 +559,8 @@ games | gold | silver | bronze
 1924 Winter	| UK - 16	| USA - 10	| UK - 11	
 1928 Summer	| USA - 47	| Netherlands - 29	| Germany - 41	
 
--- Countries that won the most gold, most silver, most bronze medals and the most medals in each olympic games.
+
+### 17. Identify which country won the most gold, most silver, most bronze medals and the most medals in each olympic games.
 ```sql
 with temp as (
 		select 
@@ -596,7 +640,7 @@ games | gold | silver | bronze | total_medals
 
 
 
-
+### 18. Which countries have never won gold medal but have won silver/bronze medals?
 -- Countries that have never won gold medal but have won silver/bronze medals
 ```sql
 select * from (
