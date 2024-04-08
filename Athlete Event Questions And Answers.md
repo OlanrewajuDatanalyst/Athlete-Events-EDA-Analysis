@@ -1,23 +1,10 @@
-## <p align="center"> Business Questions
+## <p align="center"> Athlete Events Questions
 
-The purpose of this analysis is to understand and answer some business questions, gain insights and provide some recommendation to increase revenue.
+The purpose of this analysis is to understand and answer some event questions...
 
-In this analysis, we will be focusing on orders that were not ***cancelled*** or ***returned*** since we will be dealing with metrics related to revenue.
-
-And this analysis was carried out as of September, 6th 2023.
+And this analysis was carried out as of March, 4th 2024.
 
 ---
-
-
-### 1. How much are we selling monthly? Is it high or low compared to last month?
-
-### Steps:
-  
-* Use EXTRACT function to get the unique month numbers.
-
-* Get the revenue by multiplying the sale price with the number of items sold.
-
-* Use the DISTINCT function to get the unique orders placed and the user ids who made a purchase.
 
 
 ### 1. How many olympics games have been held?
