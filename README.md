@@ -6,7 +6,9 @@ This dataset provides historical information on the modern Olympic Games, encomp
 The objective of this analysis is to explore and address specific questions aimed at understanding key developments and trends that have transpired throughout the years within the Olympic Games.
 
 
-### Dataset Structure
+
+---
+## Dataset Structure
 The file contains 271116 rows and 15 columns. Each row corresponds to an individual athlete competing in an individual Olympic event (athlete-events). The columns are:
 
 ID - Unique number for each athlete
@@ -25,5 +27,17 @@ Sport - Sport
 Event - Event
 Medal - Gold, Silver, Bronze, or NA
 
+
+---
+## Available Dataset
+
+Dataset: [Kaggle] (https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results)
+
+---
+## Case Study Questions and Answers
+
+[Solution]
+
+---
 ### Inspiration
 This dataset provides an opportunity to ask questions about how the Olympics have evolved over time, including questions about the participation and performance of women, different nations, and different sports and events.
