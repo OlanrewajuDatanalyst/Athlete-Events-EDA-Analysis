@@ -31,7 +31,7 @@ Medal - Gold, Silver, Bronze, or NA
 ---
 ## Available Dataset
 
-Dataset: [Kaggle] (https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results)
+Dataset: [Kaggle](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results)
 
 ---
 ## Case Study Questions and Answers
